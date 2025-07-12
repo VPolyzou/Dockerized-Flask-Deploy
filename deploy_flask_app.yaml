@@ -1,0 +1,66 @@
+- name: Deploy Flask Docker App
+  hosts: target_servers
+  become: yes
+
+  vars:
+    repo_url: "https://github.com/VPolyzou/my_new_project.git"
+    dest_dir: "/opt/flask-app"
+    image_name: "flask-app"
+    container_name: "flask-app"
+    exposed_port: "5000"
+
+  tasks:
+
+    - name: Install required dependencies
+      dnf:
+        name:
+          - yum-utils
+          - device-mapper-persistent-data
+          - lvm2
+        state: present
+
+    - name: Add Docker CE repository
+      command: dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+      args:
+        creates: /etc/yum.repos.d/docker-ce.repo
+
+    - name: Install Docker Engine
+      dnf:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+        state: present
+
+    - name: Start and enable Docker service
+      systemd:
+        name: docker
+        state: started
+        enabled: yes
+        
+    - name: Install git
+      ansible.builtin.dnf:
+        name: git
+        state: present
+
+    - name: Clone application repository
+      git:
+        repo: "{{ repo_url }}"
+        dest: "{{ dest_dir }}"
+        version: master
+        force: yes
+
+    - name: Build Docker image
+      command: docker build -t {{ image_name }}:latest .
+      args:
+        chdir: "{{ dest_dir }}"
+
+    - name: Remove existing container if exists
+      shell: |
+        if [ $(docker ps -aq -f name={{ container_name }}) ]; then
+          docker rm -f {{ container_name }}
+        fi
+      ignore_errors: yes
+
+    - name: Run Docker container
+      command: docker run -d --restart always -p {{ exposed_port }}:5000 --name {{ container_name }} {{ image_name }}:latest
