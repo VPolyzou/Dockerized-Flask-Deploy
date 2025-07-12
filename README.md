@@ -29,13 +29,8 @@ Ansible Deployment
 
 
 ## 🖥️ Run Locally
-
+```bash
 docker build -t my-flask-app .
 docker run -d -p 5000:5000 --name flask-app my-flask-app
 
-## ⚙️ Deploy with Ansible
-Make sure you have SSH access to your target servers defined in inventory.ini.
-```bash
-Run the playbook to deploy the app:
-ansible-playbook -i inventory.ini deploy_flask_app.yaml
 
