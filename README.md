@@ -24,18 +24,16 @@ Jenkins Pipeline
 4. Runs a new container from the built image, exposing port 5000.
 
 Ansible Deployment
-1. Uses inventory.ini to define target servers.
-2. The playbook deploy_flask_app.yaml installs Docker on targets if needed, clones the application repo, builds the Docker image, and runs the container on the remote hosts.
+1. Uses `inventory.ini` to define target servers.
+2. The playbook `deploy_flask_app.yaml` installs Docker on targets if needed, clones the application repo, builds the Docker image, and runs the container on the remote hosts.
 
 
 ## 🖥️ Run Locally
 
-```bash
 docker build -t my-flask-app .
 docker run -d -p 5000:5000 --name flask-app my-flask-app
 
-
-⚙️ Deploy with Ansible
+## ⚙️ Deploy with Ansible
 Make sure you have SSH access to your target servers defined in inventory.ini.
 ```bash
 Run the playbook to deploy the app:
