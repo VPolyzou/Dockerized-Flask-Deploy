@@ -17,7 +17,7 @@ This project demonstrates a simple CI/CD pipeline using Jenkins to build and dep
 
 ## 🚀 How it Works
 
-**Jenkins Deployment → Dockerized Flask App
+**Jenkins Deployment → Dockerized Flask App**
 
 1. Jenkins checks out the code from this repository.
 2. Builds a Docker image for the Flask app.
