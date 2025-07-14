@@ -17,13 +17,15 @@ This project demonstrates a simple CI/CD pipeline using Jenkins to build and dep
 
 ## 🚀 How it Works
 
-Jenkins Pipeline
+enkins Deployment → Dockerized Flask App
+
 1. Jenkins checks out the code from this repository.
 2. Builds a Docker image for the Flask app.
 3. Stops and removes any existing container named `flask-app`.
 4. Runs a new container from the built image, exposing port 5000.
 
-Ansible Deployment
+Ansible Deployment → Remote CentOS Servers με Docker container
+
 1. Uses `inventory.ini` to define target servers.
 2. The playbook `deploy_flask_app.yaml` installs Docker on targets if needed, clones the application repo, builds the Docker image, and runs the container on the remote hosts.
 
