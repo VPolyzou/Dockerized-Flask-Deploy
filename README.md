@@ -1,4 +1,4 @@
-# CI/CD Pipeline for a Dockerized Flask App
+# CI/CD & Configuration Management for a Dockerized Flask App
 
 This project demonstrates a simple CI/CD pipeline using Jenkins to build and deploy a Dockerized Flask application.
 
