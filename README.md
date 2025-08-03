@@ -32,13 +32,17 @@ This project demonstrates a simple CI/CD pipeline using Jenkins to build and dep
 
 ## 🖥️ Run Locally
 ```bash
-# 1. Build the Docker image
+# 1. Clone the repository and navigate into the project directory
+git clone <repository-url>
+cd <project-directory>
+
+# 2. Build the Docker image
 docker build -t my-flask-app .
 
-# 2. Run the container, exposing it on port 5000
+# 3. Run the container, exposing it on port 5000
 docker run -d -p 5000:5000 --name flask-app my-flask-app
 
-# 3. Visit http://localhost:5000 to verify it works
+# 4. Visit http://localhost:5000 to verify it works
 ```
 ## 🛠️ Ansible Deployment 
 ```bash
