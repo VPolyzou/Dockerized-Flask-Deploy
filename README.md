@@ -31,7 +31,6 @@ This project demonstrates a simple CI/CD pipeline using Jenkins to build and dep
 
 
 ## 🖥️ Run Locally
-**Jenkins Deployment**
 ```bash
 docker build -t my-flask-app .
 docker run -d -p 5000:5000 --name flask-app my-flask-app
