@@ -24,17 +24,20 @@ This project demonstrates a simple CI/CD pipeline using Jenkins to build and dep
 3. Stops and removes any existing container named `flask-app`.
 4. Runs a new container from the built image, exposing port 5000.
 
-**Ansible Deployment → Remote CentOS Servers με Docker container**
+**Ansible Deployment → Remote CentOS Servers with Docker container**
 
 1. Uses `inventory.ini` to define target servers.
 2. The playbook `deploy_flask_app.yaml` installs Docker on targets if needed, clones the application repo, builds the Docker image, and runs the container on the remote hosts.
 
 
 ## 🖥️ Run Locally
+**Jenkins Deployment**
 ```bash
 docker build -t my-flask-app .
 docker run -d -p 5000:5000 --name flask-app my-flask-app
-
+```
+**Ansible Deployment**
+```bash
 ansible-playbook -i inventory.ini deploy_flask_app.yaml  --ask-become-pass
 
 
