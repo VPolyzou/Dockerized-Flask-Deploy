@@ -35,7 +35,7 @@ This project demonstrates a simple CI/CD pipeline using Jenkins to build and dep
 docker build -t my-flask-app .
 docker run -d -p 5000:5000 --name flask-app my-flask-app
 ```
-**Ansible Deployment**
+## 🛠️ Ansible Deployment 
 ```bash
 ansible-playbook -i inventory.ini deploy_flask_app.yaml  --ask-become-pass
 
